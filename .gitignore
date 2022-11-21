@@ -2,16 +2,20 @@ CMakeCache.txt
 CTestConfig.cmake
 *~
 *.swp
+.vscode/
 
 archives
 bin
 build*/*
 build/*
 
+
 doc/doxygen/*/Doxyfile
 doc/doxygen/*/html
 doc/doxygen/*/latex
 doc/doxygen/man
+doc/doxygen/latex
+doc/doxygen/html
 
 lib
 
