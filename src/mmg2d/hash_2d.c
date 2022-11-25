@@ -42,7 +42,7 @@ int MMG2D_hashTria(MMG5_pMesh mesh) {
   if ( mesh->adja )  return 1;
   if ( !mesh->nt )  return 0;
 
-  fprintf(stdout,"In MMG2D_hashTria :\n\n");
+  fprintf(stdout,"LAETI :: In MMG2D_hashTria :\n\n");
 
   /* memory alloc */
   MMG5_SAFE_CALLOC(hcode,mesh->nt+1,MMG5_int,return 0);
@@ -134,9 +134,9 @@ int MMG2D_hashTria(MMG5_pMesh mesh) {
   
   // Comment and uncomment below to print adja - Adjacencies structures 
   /*
-  fprintf(stdout," Adjacency for %d tetra. adja has size %d\n",mesh->nt,3*mesh->nt);
+  fprintf(stdout,"LAETI ::  Adjacency for %d tetra. adja has size %d\n",mesh->nt,3*mesh->nt);
   for (l=1; l<=3*mesh->nt; l++) {
-    fprintf(stdout,"      l: %d ; adja[l]: %d ; Tetra1 : %d ; Edge1 : %d - Tetra2 : %d ; Edge2 : %d\n",
+    fprintf(stdout,"LAETI ::       l: %d ; adja[l]: %d ; Tetra1 : %d ; Edge1 : %d - Tetra2 : %d ; Edge2 : %d\n",
                           l,link[l],(l-1)/3+1,(l-1)%3,link[l]/3,link[l]%3);
   }
   */

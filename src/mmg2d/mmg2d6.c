@@ -185,6 +185,8 @@ int MMG2D_cuttri_ls(MMG5_pMesh mesh, MMG5_pSol sol, MMG5_pSol met){
 int MMG2D_mmg2d6(MMG5_pMesh mesh, MMG5_pSol sol,MMG5_pSol met) {
   MMG5_int k;
 
+  fprintf(stdout,"LAETI :: In MMG2D_mmg2d6 :\n\n");
+
   if ( abs(mesh->info.imprim) > 3 )
     fprintf(stdout,"  ** ISOSURFACE EXTRACTION\n");
 
@@ -194,9 +196,14 @@ int MMG2D_mmg2d6(MMG5_pMesh mesh, MMG5_pSol sol,MMG5_pSol met) {
     return 0;
   }
 
+  fprintf(stdout,"LAETI ::     mesh->info.ls: %f \n\n",mesh->info.ls);
+
   /* Work only with the 0 level set */
-  for (k=1; k<= sol->np; k++)
+  for (k=1; k<= sol->np; k++) {
+    // fprintf(stdout,"LAETI ::     k: %d ; sol->m[k]: %f\n",k,sol->m[k]);
     sol->m[k] -= mesh->info.ls;
+    // fprintf(stdout,"LAETI ::         rescaled sol->m[k]: %f\n\n",sol->m[k]);
+  }
 
   /* Transfer the boundary edge references to the triangles */
   if ( !MMG2D_assignEdge(mesh) ) {
@@ -224,7 +231,6 @@ int MMG2D_mmg2d6(MMG5_pMesh mesh, MMG5_pSol sol,MMG5_pSol met) {
     fprintf(stderr,"\n  ## Problem in resetting references. Exit program.\n");
     return 0;
   }
-
 
   /* Effective splitting of the crossed triangles */
   if ( !MMG2D_cuttri_ls(mesh,sol,met) ) {

@@ -564,7 +564,7 @@ int MMG5_scale_meshAndSol(MMG5_pMesh mesh,MMG5_pSol met,MMG5_pSol sol,double *dd
   MMG5_int       k,i;
   int8_t         hsizOrOptim;
 
-  fprintf(stdout,"In MMG5_scale_meshAndSol :\n\n");
+  fprintf(stdout,"LAETI :: In MMG5_scale_meshAndSol :\n\n");
 
   /* sol is a level-set or a displacement so it cannot be an aniso metric */
   if ( sol ) { assert ( sol->type == MMG5_Scalar || sol->type == MMG5_Vector ); }
@@ -582,7 +582,7 @@ int MMG5_scale_meshAndSol(MMG5_pMesh mesh,MMG5_pSol met,MMG5_pSol sol,double *dd
 
   /* normalize coordinates */
   *dd = 1.0 / mesh->info.delta;
-  fprintf(stdout,"     Scaled factors:: delta=%f; dd=%f \n\n",mesh->info.delta,*dd);
+  fprintf(stdout,"LAETI ::     Scaled factors:: delta=%f; dd=%f \n\n",mesh->info.delta,*dd);
 
   for (k=1; k<=mesh->np; k++) {
     ppt = &mesh->point[k];
@@ -591,13 +591,13 @@ int MMG5_scale_meshAndSol(MMG5_pMesh mesh,MMG5_pSol met,MMG5_pSol sol,double *dd
       ppt->c[i] = (*dd) * (ppt->c[i] - mesh->info.min[i]);
   }
 
-  fprintf(stdout,"     LS value:: intial %f \n",mesh->info.ls);
+  fprintf(stdout,"LAETI ::      LS value:: intial %f \n",mesh->info.ls);
 
   mesh->info.hausd *= (*dd);
   mesh->info.ls    *= (*dd);
   mesh->info.hsiz  *= (*dd);
 
-  fprintf(stdout,"                rescaled %f \n\n",mesh->info.ls);
+  fprintf(stdout,"LAETI ::                 rescaled %f \n\n",mesh->info.ls);
 
   /* normalize local parameters */
   for (k=0; k<mesh->info.npar; k++) {
@@ -635,9 +635,9 @@ int MMG5_scale_meshAndSol(MMG5_pMesh mesh,MMG5_pSol met,MMG5_pSol sol,double *dd
 
   if ( sol && sol->np ) {
     for ( k=sol->size; k<sol->size*(mesh->np+1); k++ ) {
-      fprintf(stdout,"     Node ID:%d; Node value:%f \n",k,sol->m[k]);
+      // fprintf(stdout,"LAETI ::      Node ID:%d; Node value:%f \n",k,sol->m[k]);
       sol->m[k]   *= (*dd);
-      fprintf(stdout,"       Rescaled value:%f \n\n",sol->m[k]);
+      // fprintf(stdout,"LAETI ::        Rescaled value:%f \n\n",sol->m[k]);
     }
   }
 
