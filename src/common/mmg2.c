@@ -605,7 +605,7 @@ int MMG5_ismaniball(MMG5_pMesh mesh, MMG5_pSol sol, MMG5_int start, int8_t istar
   i = MMG5_inxt2[istart];
 
   /* First loop: stop if an external boundary, or a change in signs (or a 0) is met
-     recall that MG_SMGSGN(a,b) = 1 provided a*b >0 */
+     recall that MG_SMSGN(a,b) = 1 provided a*b >0 */
   do{
     adja = &mesh->adja[3*(k-1)+1];
     k = adja[i] / 3;
